@@ -7,16 +7,19 @@
 //
 
 #import "ViewController.h"
+#import "ViewControllerTwo.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOne;
 
-
+@property (nonatomic) NSMutableArray *imageViewHolder;
 @property (nonatomic) UIImageView *imageViewOneHolder;
 @property (nonatomic) UIImageView *imageViewTwoHolder;
 @property (nonatomic) UIImageView *imageViewThreeHolder;
+@property (nonatomic) NSMutableArray *imageArray;
 //temporary property... to be replaced when array is added
 @property (nonatomic) NSInteger *qtyOfImages;
+@property (nonatomic) UIImage *tappedImage;
 
 @end
 
@@ -41,10 +44,26 @@
     // NOTE:  should refactor this to load content into an array and interate as many of the following processes as possible
     //
     
-    // create image views for each object
+    //create image array and assign to property
+    
+    NSMutableArray <UIImage*> *imageArray = [[NSMutableArray alloc]init];
+    self.imageArray = imageArray;
+    
+    //add Images to array
+    
+    [self.imageArray addObject:imageOne];
+    [self.imageArray addObject:imageTwo];
+    [self.imageArray addObject:imageThree];
+    
+  
+ 
+     //create image views for each object
     self.imageViewOneHolder = [[UIImageView alloc]initWithImage:imageOne];
     self.imageViewTwoHolder = [[UIImageView alloc]initWithImage:imageTwo];
     self.imageViewThreeHolder = [[UIImageView alloc]initWithImage:imageThree];
+    
+
+    
     
     // add ImageViews to UIScrollView object
     [self.scrollViewOne addSubview:self.imageViewOneHolder];
@@ -108,6 +127,16 @@
     CGPoint currentOffset = [self.scrollViewOne contentOffset];
     NSInteger x = currentOffset.x/self.imageViewOneHolder.frame.size.width;
     NSLog(@"%d",(long)x);
+    self.tappedImage = self.imageArray[x] ;
+    NSLog(@"Tapped Image: %@",self.tappedImage);
+    [self performSegueWithIdentifier:@"showDetail" sender:self];
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ViewControllerTwo *destinationViewController = [segue destinationViewController];
+    destinationViewController.currentDetailImage = self.tappedImage;
 }
 
 @end

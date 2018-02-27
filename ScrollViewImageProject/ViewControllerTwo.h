@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewControllerTwo : UIViewController <UIScrollViewDelegate>
+@property (nonatomic) UIImage *currentDetailImage;
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView;
 

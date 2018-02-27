@@ -8,11 +8,12 @@
 
 #import "ViewControllerTwo.h"
 
+
 @interface ViewControllerTwo ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewTwo;
 
 @property (nonatomic) UIImageView *detailsImageView;
-@property (nonatomic) UIImage *currentDetailImage;
+
 
 @end
 
@@ -22,7 +23,6 @@
     [super viewDidLoad];
     
     //for testing purposes, point the imageView pointer at an image
-    self.currentDetailImage = [UIImage  imageNamed:@"Lighthouse"];
     
     //initalize an image view to a property field with the current detail image at the pointer
     self.detailsImageView = [[UIImageView alloc]initWithImage:self.currentDetailImage];

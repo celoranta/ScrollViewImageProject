@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gallery" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,6 +36,7 @@
                     </view>
                     <connections>
                         <outlet property="scrollViewOne" destination="vtP-fV-Ede" id="oUc-IA-sTj"/>
+                        <segue destination="JJj-eo-Aah" kind="show" identifier="showDetail" id="ir9-HW-RXA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -45,7 +46,7 @@
         <!--View Controller Two-->
         <scene sceneID="6gI-2p-Pz9">
             <objects>
-                <viewController id="JJj-eo-Aah" customClass="ViewControllerTwo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detail" id="JJj-eo-Aah" customClass="ViewControllerTwo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OBO-yZ-VwO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
