@@ -20,7 +20,8 @@
 //temporary property... to be replaced when array is added
 @property (nonatomic) NSInteger *qtyOfImages;
 @property (nonatomic) UIImage *tappedImage;
-
+@property (nonatomic) UIPageControl* myPageControl;
+@property (nonatomic) NSInteger currentPage;
 @end
 
 @implementation ViewController
@@ -113,6 +114,18 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapRecognized)];
     [self.scrollViewOne addGestureRecognizer:tapRecognizer];
     
+    
+    //Create UI Page Control
+
+     [self.view addSubview:self.myPageControl];
+
+    [self.myPageControl.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor];
+    [self.myPageControl.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor];
+    [self.myPageControl.heightAnchor constraintEqualToConstant:100];
+    [self.myPageControl setHidden:NO];
+
+    
+    
 }
 
 
@@ -138,5 +151,20 @@
     ViewControllerTwo *destinationViewController = [segue destinationViewController];
     destinationViewController.currentDetailImage = self.tappedImage;
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+
+    CGPoint currentOffset = [self.scrollViewOne contentOffset];
+    NSInteger x = currentOffset.x/self.imageViewOneHolder.frame.size.width;
+    NSInteger page = (x+1);
+ 
+    [self.myPageControl setCurrentPage:page];
+    [self.myPageControl updateCurrentPageDisplay];
+    NSLog(@"Scroll to page: %lu  Also, %lu",(unsigned long)self.myPageControl.currentPage,page);
+
+}
+
+
 
 @end
