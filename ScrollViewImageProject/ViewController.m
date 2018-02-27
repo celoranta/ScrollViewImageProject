@@ -15,7 +15,8 @@
 @property (nonatomic) UIImageView *imageViewOneHolder;
 @property (nonatomic) UIImageView *imageViewTwoHolder;
 @property (nonatomic) UIImageView *imageViewThreeHolder;
-
+//temporary property... to be replaced when array is added
+@property (nonatomic) NSInteger *qtyOfImages;
 
 @end
 
@@ -24,6 +25,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    //**
+    //TEMPORARY - set qty of images
+    //**
+    self.qtyOfImages = 3;
     
     // create image objects from provided images
     UIImage *imageOne = [UIImage imageNamed:@"Lighthouse"];
@@ -40,9 +47,9 @@
     self.imageViewThreeHolder = [[UIImageView alloc]initWithImage:imageThree];
     
     // add ImageViews to UIScrollView object
-    [self.scrollViewOne addSubview:_imageViewOneHolder];
-    [self.scrollViewOne addSubview:_imageViewTwoHolder];
-    [self.scrollViewOne addSubview:_imageViewThreeHolder];
+    [self.scrollViewOne addSubview:self.imageViewOneHolder];
+    [self.scrollViewOne addSubview:self.imageViewTwoHolder];
+    [self.scrollViewOne addSubview:self.imageViewThreeHolder];
     
     // constrain images to their aspect ratios within their bounds
     self.imageViewOneHolder.contentMode = YES;
@@ -81,6 +88,12 @@
     
     // Enable paging
     [self.scrollViewOne setPagingEnabled:YES];
+    
+    //Create UITapViewRecognizer
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapRecognized)];
+    [self.scrollViewOne addGestureRecognizer:tapRecognizer];
+    
 }
 
 
@@ -89,5 +102,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)tapRecognized
+{
+    NSLog(@"Hiya!");
+    CGPoint currentOffset = [self.scrollViewOne contentOffset];
+    NSInteger x = currentOffset.x/self.imageViewOneHolder.frame.size.width;
+    NSLog(@"%d",(long)x);
+}
 
 @end
