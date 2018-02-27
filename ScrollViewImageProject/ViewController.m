@@ -10,9 +10,10 @@
 #import "ViewControllerTwo.h"
 
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOne;
 
-@property (nonatomic) NSMutableArray *imageViewHolder;
+
 @property (nonatomic) UIImageView *imageViewOneHolder;
 @property (nonatomic) UIImageView *imageViewTwoHolder;
 @property (nonatomic) UIImageView *imageViewThreeHolder;
@@ -20,7 +21,7 @@
 //temporary property... to be replaced when array is added
 @property (nonatomic) NSInteger *qtyOfImages;
 @property (nonatomic) UIImage *tappedImage;
-@property (nonatomic) UIPageControl* myPageControl;
+
 @property (nonatomic) NSInteger currentPage;
 @end
 
@@ -28,13 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
-    
-    //**
-    //TEMPORARY - set qty of images
-    //**
-    self.qtyOfImages = 3;
     
     // create image objects from provided images
     UIImage *imageOne = [UIImage imageNamed:@"Lighthouse"];
@@ -51,20 +46,14 @@
     self.imageArray = imageArray;
     
     //add Images to array
-    
     [self.imageArray addObject:imageOne];
     [self.imageArray addObject:imageTwo];
     [self.imageArray addObject:imageThree];
-    
-  
  
      //create image views for each object
     self.imageViewOneHolder = [[UIImageView alloc]initWithImage:imageOne];
     self.imageViewTwoHolder = [[UIImageView alloc]initWithImage:imageTwo];
     self.imageViewThreeHolder = [[UIImageView alloc]initWithImage:imageThree];
-    
-
-    
     
     // add ImageViews to UIScrollView object
     [self.scrollViewOne addSubview:self.imageViewOneHolder];
@@ -76,12 +65,10 @@
     self.imageViewTwoHolder.contentMode = YES;
     self.imageViewThreeHolder.contentMode = YES;
 
-    
     // turn off auto-resizing
     self.imageViewOneHolder.translatesAutoresizingMaskIntoConstraints = NO;
     self.imageViewTwoHolder.translatesAutoresizingMaskIntoConstraints = NO;
     self.imageViewThreeHolder.translatesAutoresizingMaskIntoConstraints = NO;
-    
     
     // create constraints for each UIImageView against each other and against the UIScrollView
     [self.imageViewOneHolder.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
@@ -93,13 +80,13 @@
     [self.imageViewTwoHolder.leadingAnchor constraintEqualToAnchor:self.imageViewOneHolder.trailingAnchor].active = YES;
     [self.imageViewTwoHolder.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
     [self.imageViewTwoHolder.widthAnchor constraintEqualToConstant:self.view.frame.size.width].active = YES;
-    
 
     [self.imageViewThreeHolder.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
     [self.imageViewThreeHolder.leadingAnchor constraintEqualToAnchor:self.imageViewTwoHolder.trailingAnchor].active = YES;
     [self.imageViewThreeHolder.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
     [self.imageViewThreeHolder.widthAnchor constraintEqualToConstant: self.view.frame.size.width].active = YES;
-        // Extra bound required here to pin end of images to the pannable scroll view area
+    
+    // Extra bound required here to pin end of images to the pannable scroll view area
     [self.imageViewThreeHolder.trailingAnchor constraintEqualToAnchor:self.scrollViewOne.trailingAnchor].active = YES;
     
     // Disallow zooming
@@ -110,23 +97,9 @@
     [self.scrollViewOne setPagingEnabled:YES];
     
     //Create UITapViewRecognizer
-    
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapRecognized)];
     [self.scrollViewOne addGestureRecognizer:tapRecognizer];
-    
-    
-    //Create UI Page Control
-
-     [self.view addSubview:self.myPageControl];
-
-    [self.myPageControl.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor];
-    [self.myPageControl.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor];
-    [self.myPageControl.heightAnchor constraintEqualToConstant:100];
-    [self.myPageControl setHidden:NO];
-
-    
-    
-}
+    }
 
 
 - (void)didReceiveMemoryWarning {
@@ -143,7 +116,6 @@
     self.tappedImage = self.imageArray[x] ;
     NSLog(@"Tapped Image: %@",self.tappedImage);
     [self performSegueWithIdentifier:@"showDetail" sender:self];
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -154,17 +126,31 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-
     CGPoint currentOffset = [self.scrollViewOne contentOffset];
     NSInteger x = currentOffset.x/self.imageViewOneHolder.frame.size.width;
-    NSInteger page = (x+1);
+    NSInteger page = (x);
  
     [self.myPageControl setCurrentPage:page];
     [self.myPageControl updateCurrentPageDisplay];
-    NSLog(@"Scroll to page: %lu  Also, %lu",(unsigned long)self.myPageControl.currentPage,page);
-
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    //Create UI Page Control
+ //  CGRect pageControllerFrame = CGRectMake(0 , 0, 0, 0);
+    
+   self.myPageControl = [[UIPageControl alloc]initWithFrame:CGRectZero];
+    [self.view addSubview:self.myPageControl];
+    [self.myPageControl setPageIndicatorTintColor:[UIColor darkGrayColor]];
+    [self.myPageControl setCurrentPageIndicatorTintColor:[UIColor lightGrayColor]];
+    self.myPageControl.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.myPageControl.centerXAnchor constraintEqualToAnchor: self.view.centerXAnchor];
+    //[self.myPageControl.centerYAnchor constraintEqualToAnchor: self.view.centerYAnchor];
+    //    [self.myPageControl.heightAnchor constraintEqualToConstant:self.view.frame.size.height];
+    //    [self.myPageControl.widthAnchor constraintEqualToConstant:self.view.frame.size.width];
+    [self.myPageControl setNumberOfPages:[self.imageArray count]];
+    self.myPageControl.currentPage = 0;
 
 
+}
 @end

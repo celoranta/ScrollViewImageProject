@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController <UIScrollViewDelegate, UIPageViewControllerDelegate>
-
+@property (nonatomic) UIPageControl* myPageControl;
 
 
 @end
