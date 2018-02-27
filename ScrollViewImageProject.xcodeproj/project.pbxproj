@@ -13,6 +13,7 @@
 		95FAF8462044A0EB007424D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FAF8452044A0EB007424D1 /* Assets.xcassets */; };
 		95FAF8492044A0EB007424D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95FAF8472044A0EB007424D1 /* LaunchScreen.storyboard */; };
 		95FAF84C2044A0EB007424D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FAF84B2044A0EB007424D1 /* main.m */; };
+		95FAF8592044DC26007424D1 /* ViewControllerTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FAF8582044DC26007424D1 /* ViewControllerTwo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		95FAF8482044A0EB007424D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95FAF84A2044A0EB007424D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95FAF84B2044A0EB007424D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95FAF8572044DC26007424D1 /* ViewControllerTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerTwo.h; sourceTree = "<group>"; };
+		95FAF8582044DC26007424D1 /* ViewControllerTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewControllerTwo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				95FAF83F2044A0EB007424D1 /* ViewController.h */,
 				95FAF8402044A0EB007424D1 /* ViewController.m */,
 				95FAF8422044A0EB007424D1 /* Main.storyboard */,
+				95FAF8572044DC26007424D1 /* ViewControllerTwo.h */,
+				95FAF8582044DC26007424D1 /* ViewControllerTwo.m */,
 				95FAF8452044A0EB007424D1 /* Assets.xcassets */,
 				95FAF8472044A0EB007424D1 /* LaunchScreen.storyboard */,
 				95FAF84A2044A0EB007424D1 /* Info.plist */,
@@ -145,6 +150,7 @@
 				95FAF8412044A0EB007424D1 /* ViewController.m in Sources */,
 				95FAF84C2044A0EB007424D1 /* main.m in Sources */,
 				95FAF83E2044A0EB007424D1 /* AppDelegate.m in Sources */,
+				95FAF8592044DC26007424D1 /* ViewControllerTwo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
